@@ -27,10 +27,11 @@ Use the `npm run` command the run one of the following steps to create a GeoJSON
 * Specify the `GM_CODE` of the municipality first:
 > "shape:wijk": "ogr2ogr -f GeoJSON -t_srs EPSG:4326 -where GM_CODE='GM0344' temp/wijk_2019_v1.json temp/wijk_2019_v1.shp",
 
-* Then run
+* Then run:
 
 
     npm run map:wijk
+
 
 
 #### Buurten (neighbourhoods)
@@ -42,6 +43,7 @@ Use the `npm run` command the run one of the following steps to create a GeoJSON
 
 
     npm run map:buurt
+
 
 
 #### Data
