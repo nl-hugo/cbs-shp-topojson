@@ -1,0 +1,28 @@
+{
+  "name": "cbs-shp-topojson",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nl-hugo/cbs-shp-topojson.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "download-cli": "~1.1",
+    "topojson": "~1.6",
+    "rimraf": "latest",
+    "ogr2ogr": "~2.0"
+  },
+  "scripts": {
+    "clean": "rimraf temp",
+    "download": "download --extract --out temp https://www.cbs.nl/-/media/cbs/dossiers/nederland%20regionaal/wijk-en-buurtstatistieken/wijkbuurtkaart_2019_v1.zip",
+    "shape:buurt": "ogr2ogr -f GeoJSON -t_srs EPSG:4326 -where GM_CODE='GM0344' temp/buurt_2019_v1.json temp/buurt_2019_v1.shp",
+    "shape:wijk": "ogr2ogr -f GeoJSON -t_srs EPSG:4326 -where GM_CODE='GM0344' temp/wijk_2019_v1.json temp/wijk_2019_v1.shp",
+    "shape:gem": "ogr2ogr -f GeoJSON -t_srs EPSG:4326 -where WATER='NEE' temp/gemeente_2019_v1.json temp/gemeente_2019_v1.shp",
+    "topojson:buurt": "topojson --id-property BU_CODE -p name=BU_NAAM -o buurt.json -- temp/buurt_2019_v1.json",
+    "topojson:wijk": "topojson --id-property WK_CODE -p name=WK_NAAM -o wijk.json -- temp/wijk_2019_v1.json",
+    "topojson:gem": "topojson --id-property GM_CODE -p name=GM_NAAM -s 3e-9 -o gemeente.json -- temp/gemeente_2019_v1.json",
+    "map:buurt": "npm run download && npm run shape:buurt && npm run topojson:buurt && npm run clean",
+    "map:wijk": "npm run download && npm run shape:wijk && npm run topojson:wijjk && npm run clean",
+    "map:gem": "npm run download && npm run shape:gem && npm run topojson:gem && npm run clean"
+  }
+}
