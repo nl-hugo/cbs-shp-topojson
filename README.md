@@ -60,7 +60,7 @@ One can obtain similar results from [mapshaper](https://mapshaper.org/) by impor
 * filter 'GM_CODE == "GM0344"'
 * filter-fields BU_CODE,BU_NAAM
 * proj wgs84
-* simplify 10^%
+* simplify 10%
 
 
 
