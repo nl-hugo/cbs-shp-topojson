@@ -51,6 +51,19 @@ Use the `npm run` command the run one of the following steps to create a GeoJSON
 &copy; CBS en het Kadaster
 
 
+
+
+#### Using Mapshaper
+
+One can obtain similar results from [mapshaper](https://mapshaper.org/) by importing the shape files and running the folling commands:
+
+* filter 'GM_CODE == "GM0344"'
+* filter-fields BU_CODE,BU_NAAM
+* proj wgs84
+* simplify 10^%
+
+
+
 #### Future enhancements
 
 * Specifiy variables from command line
